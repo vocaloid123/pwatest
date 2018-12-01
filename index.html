@@ -105,7 +105,7 @@ html {
 	<script>
 		// 检测浏览器是否支持SW
 		if(navigator.serviceWorker != null){
-		  navigator.serviceWorker.register('service-worker.js',{scope: './'})
+		  navigator.serviceWorker.register('https://vocaloid123.github.io/pwatest/service-worker.js')
 		  .then(function(registartion) {
 		  //注册成功
 			console.log('支持sw:',registartion.scope)
