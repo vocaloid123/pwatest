@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>css旋转</title>
 <link rel="manifest" href="./manifest.json">
-<script src="test.js"></script>
 <style>
 * {
 	margin: 0;
@@ -103,5 +102,17 @@ html {
 		<div class="img2 move2"></div>
 		<div class="img3 move3"></div>
 	</div>
+	<script>
+		// 检测浏览器是否支持SW
+		if(navigator.serviceWorker != null){
+		  navigator.serviceWorker.register('sw.js',{scope: '/'})
+		  .then(function(registartion){
+		  //注册成功
+			console.log('支持sw:',registartion.scope)
+		  }).catch(function (err){
+			console.log('fail')
+		  });
+		}
+	  </script>
 </body>
 </html>
