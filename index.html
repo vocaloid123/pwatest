@@ -1,51 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#008000"/>
-    <title>My hello world page</title>
-    <link rel="stylesheet" type="text/css" href="hello-world.css" media="all">
-    <link rel="manifest" href="manifest.json">
-  </head>
-  <body>
-    <h1 class="vertical-container">Hello World</h1>
-    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAXK4Orxl2CghIQvKiUPtkhEngSgzteqE0",
-        authDomain: "hello-world-pwa-8669c.firebaseapp.com",
-        databaseURL: "https://hello-world-pwa-8669c.firebaseio.com",
-        projectId: "hello-world-pwa-8669c",
-        storageBucket: "hello-world-pwa-8669c.appspot.com",
-        messagingSenderId: "660239288739"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function() {
-                console.log('Service Worker Registered');
-          });
-      }
-    </script>
-    <script>
-      const messaging = firebase.messaging();
+<head>
+<meta charset="UTF-8">
+<title>css旋转</title>
+<link rel="manifest" href="./manifest.json">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
 
-      messaging.requestPermission()
-      .then(function() {
-        console.log('Notification permission granted.');
-        return messaging.getToken();
-      })
-      .then(function(token) {
-        console.log(token);
-      })
-      .catch(function(err) {
-        console.log('Unable to get permission to notify.', err);
-      })
-    </script>
-  </body>
+body,
+html {
+	width: 100%;
+	height: 100%;
+	background: #000;
+}
+
+.wrap {
+	width: 40%;
+	height: 40%;
+}
+
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid;
+}
+
+.img1 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url(images/img1.png) no-repeat center center;
+}
+
+.img2 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url(images/img2.png) no-repeat center center;
+}
+
+.img3 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url(images/img3.png) no-repeat center center;
+}
+
+.move1 {
+	animation: myMove1 5s ease-in infinite alternate;
+	-webkit-animation: myMove1 5s ease-in infinite alternate;
+}
+
+.move2 {
+	animation: myMove2 3s ease infinite alternate;
+	-webkit-animation: myMove1 3s ease infinite alternate;
+}
+
+.move3 {
+	animation: myMove3 2s ease-in infinite alternate;
+	-webkit-animation: myMove1 2s ease-in infinite alternate;
+}
+
+@keyframes myMove1 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes myMove1 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+@keyframes myMove2 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes myMove2 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+@keyframes myMove3 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes myMove3 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+
+</style>
+</head>
+<body>
+	<div class="wrap center">
+		<div class="img1 move1"></div>
+		<div class="img2 move2"></div>
+		<div class="img3 move3"></div>
+	</div>
+	<script>
+		// 检测浏览器是否支持SW
+		if(navigator.serviceWorker != null){
+		  let service = navigator.serviceWorker.register('service-worker.js', {
+			scope: './'})
+			console.log(service)
+		  service.then(function(registartion) {
+		  //注册成功
+			console.log('支持sw:',registartion.scope)
+		  }).catch(function (err){
+			console.log('fail')
+		  });
+		}
+	  </script>
+</body>
 </html>
